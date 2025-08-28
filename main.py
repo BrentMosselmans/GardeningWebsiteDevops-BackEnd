@@ -3,7 +3,8 @@ from fastapi import FastAPI
 from database import test_connection
 from queries.Brentqueries import create_tables, add_sample_data
 from Routes.BrentEndpoints import router as brent_router
-from Models.Brentmodels import SeasonalTip 
+from Models.Brentmodels import SeasonalTip
+from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -21,6 +22,14 @@ async def lifespan(app: FastAPI):
     print("Application is shutting down.")
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://lushlandbackend.internal.redbush-eac44901.francecentral.azurecontainerapps.io", "https://lushlandbackend.internal.redbush-eac44901.francecentral.azurecontainerapps.io"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(brent_router)
 
