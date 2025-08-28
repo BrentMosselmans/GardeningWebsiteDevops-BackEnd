@@ -2,6 +2,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from database import test_connection
 from queries.Brentqueries import create_tables, add_sample_data
+from Routes.BrentEndpoints import router as brent_router
+from Models.Brentmodels import SeasonalTip 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,6 +21,8 @@ async def lifespan(app: FastAPI):
     print("Application is shutting down.")
 
 app = FastAPI(lifespan=lifespan)
+
+app.include_router(brent_router)
 
 @app.get("/")
 def root():

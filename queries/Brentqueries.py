@@ -38,3 +38,31 @@ def add_sample_data():
         print(f"Error adding sample data: {e}")
     finally:
         conn.close()
+
+# Get Sample Data/Tips
+def get_all_tips_query():
+    conn = get_connection()
+    try:
+        with conn.cursor(row_factory=psycopg.rows.dict_row) as cur:
+            cur.execute("SELECT * FROM seasonal_tips")
+            tips = cur.fetchall()
+            return tips
+    except Exception as e:
+        print(f"Error getting all tips: {e}")
+        return []
+    finally:
+        conn.close()
+
+# Get tips by season
+def get_tips_by_season_query(season):
+    conn = get_connection()
+    try:
+        with conn.cursor(row_factory=psycopg.rows.dict_row) as cur:
+            cur.execute("SELECT * FROM seasonal_tips WHERE season = %s", (season,))
+            tips = cur.fetchall()
+            return tips
+    except Exception as e:
+        print(f"Error getting tips by season: {e}")
+        return []
+    finally:
+        conn.close()
