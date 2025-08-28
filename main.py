@@ -25,10 +25,11 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://lushlandbackend.internal.redbush-eac44901.francecentral.azurecontainerapps.io"],
+    allow_origins=["https://brave-glacier-074fbd903.1.azurestaticapps.net/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_origins=["*"]
 )
 
 app.include_router(brent_router)
