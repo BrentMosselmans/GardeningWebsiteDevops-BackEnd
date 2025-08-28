@@ -25,7 +25,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://lushlandbackend.internal.redbush-eac44901.francecentral.azurecontainerapps.io", "https://lushlandbackend.internal.redbush-eac44901.francecentral.azurecontainerapps.io"],
+    allow_origins=["https://lushlandbackend.internal.redbush-eac44901.francecentral.azurecontainerapps.io"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
