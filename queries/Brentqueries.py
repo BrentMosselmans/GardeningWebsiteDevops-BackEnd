@@ -46,6 +46,7 @@ def get_all_tips_query():
         with conn.cursor(row_factory=psycopg.rows.dict_row) as cur:
             cur.execute("SELECT * FROM seasonal_tips")
             tips = cur.fetchall()
+            print("Fetched data from DB:", tips)
             return tips
     except Exception as e:
         print(f"Error getting all tips: {e}")
