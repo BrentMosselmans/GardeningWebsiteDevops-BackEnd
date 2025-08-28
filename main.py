@@ -27,7 +27,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_methods=["*"],
     allow_headers=["*"],
-    allow_origins=["*"]
+    allow_origins=["https://brave-glacier-074fbd903.1.azurestaticapps.net"]
 )
 
 app.include_router(brent_router)
